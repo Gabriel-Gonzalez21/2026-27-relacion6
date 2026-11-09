@@ -14,6 +14,56 @@ abstract class MuebleBase{
     private float $_precio = 30;
 
 
+
+
+    //-----------------------GETTERS Y SETTERS---------------------------------
+
+    //Nombre
+    public function setNombre(string $nombre): bool{
+        $nombre = trim($nombre);
+
+        if($nombre == ""){
+            return false;
+        }
+        if(!validaCadena($nombre, 40,"")){
+            return false;
+        }
+
+        $this->_nombre = mb_strtoupper($nombre);
+        return true;
+    }
+
+    public function getNombre(): string{
+        return $this->_nombre;
+    }
+
+    //Fabricante
+    public function setFabricante(string $fabricante): bool{
+
+        if (mb_substr($fabricante, 0, 5) !== "FaMu:") {
+            $fabricante = "FaMu:" . $fabricante;
+        }
+
+        if (!validaCadena($fabricante, 30, "")) {
+            $fabricante = mb_substr($fabricante,0,30);
+        }
+
+        $this->_fabricante = $fabricante;
+
+        return true;
+    }
+
+    public function getFabricante(): string{
+        return $this->_fabricante;
+    }
+
+
+
+
+
+
+
+
     public function __construct($nombre , $fabricante, $pais, $anio, $fechaIniVenta, $fechaFinVenta, $precio)
     {
 
