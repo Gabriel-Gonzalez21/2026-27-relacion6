@@ -1,0 +1,306 @@
+@charset "UTF-8";
+
+@import url('https://fonts.cdnfonts.com/css/utendo');
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #fcfcfc 0%, #c2dffc 50%, #9ceffa 100%);
+    background-attachment: fixed;
+    font-size: 16px;
+    font-family: 'Utendo', sans-serif;
+    margin: 0;
+    padding: 40px 0;
+    color: #0188c7; 
+}
+
+#documento {
+    margin: 0 auto;
+    padding: 30px;
+    width: 750px;
+    border-radius: 24px; 
+    
+
+    background: rgba(255, 255, 255, 0.08); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    
+  
+    border: 1px solid rgba(255, 255, 255, 0.25); 
+    
+    
+    box-shadow: inset 0 20px 30px rgba(255, 255, 255, 0.15), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+#cabecera {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px 20px 0 0;
+}
+
+#cabecera #logo {
+    width: 75px;
+    height: auto;
+
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
+}
+
+#cabecera #titulo {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #ffffff;
+
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(0, 242, 254, 0.4);
+    letter-spacing: 0.5px;
+}
+
+
+.boton {
+    display: inline-block;
+    position: relative;
+    overflow: hidden; 
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    padding: 10px 24px;
+    font-weight: bold;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 4px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.boton a, .boton a:visited {
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+}
+
+
+.boton:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #00f2fe;
+    color: #ffffff;
+    
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.6), 
+                inset 0 0 10px rgba(255,255,255,0.5);
+    transform: translateY(-2px); 
+}
+
+
+.tabla {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    margin: 20px 0;
+}
+
+.tabla th {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+.tabla tr {
+    transition: background-color 0.3s;
+}
+
+.tabla td {
+    padding: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+
+.tabla tr td:first-child { border-left: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px 0 0 12px; }
+.tabla tr td:last-child { border-right: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0 12px 12px 0; }
+
+.tabla tr.par td {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+.tabla tr:hover td {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+
+#pie {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1em;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 20px 20px;
+    margin-top: 20px;
+}
+
+
+.for_texto {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.for_texto::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.for_texto:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #00f2fe;
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+}
+
+
+.error {
+    background: rgba(255, 75, 75, 0.15);
+    color: #ff9e9e;
+    border: 1px solid rgba(255, 75, 75, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(255, 75, 75, 0.2);
+    margin: 15px 0;
+}
+
+#wii{
+    width: 100px;
+}
+
+
+/* ==========================================================================
+   CORRECCIÓN DE CONTRASTES Y LISTADO DE EJERCICIOS
+   ========================================================================== */
+
+/* 1. Corrección del color de texto en los botones del menú */
+#barraMenu a {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    color: #0188c7; /* Cambiado a tu azul principal para que sea legible sobre el fondo claro */
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.95em;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Bordes un poco más visibles */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+#barraMenu a:hover {
+    background: #0188c7; /* Invierte el fondo al pasar el ratón */
+    border-color: #0188c7;
+    color: #ffffff; /* Texto blanco en hover */
+    box-shadow: 0 0 15px rgba(1, 136, 199, 0.4);
+    transform: translateY(-2px);
+}
+
+/* 2. Corrección de visibilidad para las migas de pan (Breadcrumbs) */
+#barraUbicacion, .barraModdle {
+    font-size: 0.9em;
+    margin: 20px 0;
+    padding: 8px 0;
+    color: #72a6cc; /* Azul apagado para los textos secundarios como ">>" */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+#barraUbicacion a, .barraModdle a {
+    color: #0188c7; /* Azul fuerte y legible */
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+#barraUbicacion a:hover, .barraModdle a:hover {
+    color: #00b4d8;
+    text-decoration: underline;
+}
+
+/* 3. Título de la sección (RELACIÓN 2...) */
+h2, .titulo-seccion {
+    color: #0188c7;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 4. Estilos elegantes para el listado de Ejercicios */
+.lista-ejercicios {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lista-ejercicios li a {
+    display: block;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.4); /* Tarjeta translúcida */
+    color: #0188c7;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.lista-ejercicios li a:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px); /* Desplazamiento lateral suave */
+    box-shadow: 0 4px 15px rgba(1, 136, 199, 0.15);
+    color: #0077b6;
+}
+
+
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center; /* Alinea verticalmente al centro */
+    justify-content: flex-start; /* Hace que se apilen hacia la izquierda */
+    gap: 20px; /* Controla la separación exacta entre el logo y el texto */
+    border-radius: 20px 20px 0 0;
+}
+
+
