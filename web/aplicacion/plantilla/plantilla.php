@@ -25,7 +25,7 @@ function inicioCabecera($titulo)
 
         <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
         Remove this if you use the .htaccess -->
-            <meta http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
+        <meta http-equiv="X-UA-Compatible"  content="IE=edge,chrome=1">
 
         <title><?php echo $titulo ?></title>
         <meta name="description" content="">
@@ -57,7 +57,7 @@ function inicioCuerpo(string $cabecera, array $barraUbi=[])
         <div id="documento">
         
             <header>
-                <a href="../../index.php"><img src="../../imagenes/WiiSportsResort(USA)(EnFrEs)(Rev1).png.7b8c861ce9b84e16722209ff9cbb28ff.png" alt="" id="wii"></a>
+                <a href="../../index.php"><img src="../../imagenes/logoMarcos.png" alt="" id="wii"></a>
                 <h1 id="titulo"><?php echo $cabecera;?></h1>
             </header>
             
@@ -73,7 +73,7 @@ function inicioCuerpo(string $cabecera, array $barraUbi=[])
                     }
                     ?>
                 </ul>
-                <a href="../../aplicacion/relacion1/index.php">Relación 1</a>
+                <a href="../../aplicacion/relacion1/index.php">Pruebas</a>
                  
                 
             </div>
