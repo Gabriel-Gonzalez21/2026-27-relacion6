@@ -44,8 +44,9 @@ abstract class MuebleBase{
             $fabricante = "FaMu:" . $fabricante;
         }
 
-        if (!validaCadena($fabricante, 30, "")) {
+        if (!validaCadena($fabricante, 30, "FaMu:")) {
             $fabricante = mb_substr($fabricante,0,30);
+            return false;
         }
 
         $this->_fabricante = $fabricante;
