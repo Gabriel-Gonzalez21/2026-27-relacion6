@@ -150,6 +150,10 @@ abstract class MuebleBase{
 
         return true;
     }
+    
+    public function getPrecio(): float{
+        return $this->_precio;
+    }
 
 
 
@@ -204,6 +208,14 @@ abstract class MuebleBase{
 
 
 
+    /**
+     * Método de clase puedeCrear que devuelve true si se pueden crear más instancias de la
+     * clase y false en caso contrario. Además, devuelve en el parámetro Número el número de
+     * muebles que aún se pueden crear de la clase.
+     *
+     * @param integer $numero
+     * @return boolean
+     */
     public static function puedeCrear(int &$numero): bool{
 
         $numero = self::MAXIMO_MUEBLES - self::$_mueblesCreados;
@@ -216,7 +228,11 @@ abstract class MuebleBase{
     }
 
 
-
+    /**
+     * Método toString
+     *
+     * @return string
+     */
     public function __toString(): string{
         return "MUEBLE de clase " .get_class($this) ." con nombre " .$this->_nombre .", fabricante " .
             $this->_fabricante .", fabricado en " .$this->_pais ." a partir del año " .$this->_anio .
