@@ -5,6 +5,8 @@ abstract class MuebleBase{
     private const MAXIMO_MUEBLES = 1000;
     private static int $_mueblesCreados = 0;
 
+    private Caracteristicas $_caracteristicas;
+
     private string $_nombre;
     private string $_fabricante = "FaMu";
     private string $_pais = "ESPAÑA";
@@ -15,8 +17,61 @@ abstract class MuebleBase{
 
 
 
+    //--------------------------------CONSTRUCTOR----------------------------------------
+    public function __construct(string $nombre, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020,
+                                string $fechaIniVenta = "01/01/2020",string $fechaFinVenta = "31/12/2040",float $precio = 30){
+
+
+        //inicializar caracteristicas en el constructor
+        $this->_caracteristicas = new Caracteristicas();
+
+        if (!$this->setNombre($nombre)) {
+            throw new Exception("Nombre incorrecto");
+        }
+
+        if (!$this->setFabricante($fabricante)) {
+            $this->_fabricante = "FaMu:";
+        }
+
+        if (!$this->setPais($pais)) {
+            $this->_pais = "ESPAÑA";
+        }
+
+        if (!$this->setAnio($anio)) {
+            $this->_anio = 2020;
+        }
+
+        if (!$this->setFechaIniVenta($fechaIniVenta)) {
+            $this->_fechaIniVenta =
+                "01/01/" . $this->_anio;
+        }
+
+        if (!$this->setFechaFinVenta($fechaFinVenta)) {
+            $this->_fechaFinVenta = "31/12/2040";
+        }
+
+        if (!$this->setPrecio($precio)) {
+            $this->_precio = 30;
+        }
+
+        if (self::$_mueblesCreados >= self::MAXIMO_MUEBLES) {
+            throw new Exception("Alcanzado el número máximo de muebles");
+        }
+
+
+        self::$_mueblesCreados++;
+    }
+
+
 
     //-----------------------GETTERS Y SETTERS---------------------------------
+
+
+    //------------------get caracteristicas
+    public function getCaracteristicas(): Caracteristicas{
+        return $this->_caracteristicas;
+    }
+
 
     //--------------------Nombre
     public function setNombre(string $nombre): bool{
@@ -159,51 +214,6 @@ abstract class MuebleBase{
 
 
 
-    //--------------------------------CONSTRUCTOR----------------------------------------
-    public function __construct(string $nombre, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020,
-                                string $fechaIniVenta = "01/01/2020",string $fechaFinVenta = "31/12/2040",float $precio = 30){
-
-        if (!$this->setNombre($nombre)) {
-            throw new Exception("Nombre incorrecto");
-        }
-
-        if (!$this->setFabricante($fabricante)) {
-            $this->_fabricante = "FaMu:";
-        }
-
-        if (!$this->setPais($pais)) {
-            $this->_pais = "ESPAÑA";
-        }
-
-        if (!$this->setAnio($anio)) {
-            $this->_anio = 2020;
-        }
-
-        if (!$this->setFechaIniVenta($fechaIniVenta)) {
-            $this->_fechaIniVenta =
-                "01/01/" . $this->_anio;
-        }
-
-        if (!$this->setFechaFinVenta($fechaFinVenta)) {
-            $this->_fechaFinVenta = "31/12/2040";
-        }
-
-        if (!$this->setPrecio($precio)) {
-            $this->_precio = 30;
-        }
-
-        if (self::$_mueblesCreados >= self::MAXIMO_MUEBLES) {
-            throw new Exception("Alcanzado el número máximo de muebles");
-        }
-
-
-        self::$_mueblesCreados++;
-    }
-
-
-
-
-
     abstract public function damePropiedadesAdicionales(): array;
 
 
@@ -225,6 +235,34 @@ abstract class MuebleBase{
         }
 
         return false;
+    }
+
+
+    /**
+     * Método anadir que recibirá pares de argumentos en la forma (string carac, mixed valor) 
+     * que se corresponden con el nombre de la característica y el valor de la misma y que 
+     * añadirá la característica a la propiedad privada.
+     *
+     * @param [type] ...$parametros
+     * @return void
+     */
+    public function anadirCaracteristicas(...$parametros) : void {
+        
+        if (count($parametros) < 2){
+            return;
+        }
+        //si se indica un número impar se desecha el ultimo parámetro
+        if(count($parametros) % 2 !== 0){
+            array_pop($parametros);
+        }
+
+        for($x = 0; $x < count($parametros); $x += 2){
+            $nombre = $parametros[$x];
+            $valor = $parametros[$x + 1];
+
+            $this->_caracteristicas -> $nombre = $valor;
+            
+        }
     }
 
 
