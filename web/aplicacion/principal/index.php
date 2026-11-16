@@ -5,15 +5,29 @@ include_once(dirname(__FILE__) . "/datos.php");
 
 
 //controlador
-$muebleMostrar = null;
-$indiceSeleccionado = 1;
 
-if (isset($_POST["indice"])) {
-    $indiceSeleccionado = (int)$_POST["indice"];
+//Mostrar mueble seleccionado
+$muebleSeleccionado = null;
 
-    if (isset($_POST["btnMostrar"]) && isset($muebles[$indiceSeleccionado])) {
-        $muebleMostrar = $muebles[$indiceSeleccionado];
+if (isset($_POST["mostrar"])) {
+
+    $indice = (int)$_POST["idMueble"];
+
+    if (isset($muebles[$indice])) {
+
+        $muebleSeleccionado = $muebles[$indice];
     }
+}
+
+
+//Modificar mueble seleccionado
+if (isset($_POST["modificar"])) {
+
+    $indice = (int)$_POST["idMueble"];
+
+    header("Location: modificar.php?id=". $indice);
+
+    exit;
 }
 
 
@@ -37,8 +51,8 @@ $barraUbi = [
 inicioCabecera("TIENDA");
 cabecera();
 finCabecera();
-inicioCuerpo("TIENDA");
-cuerpo($muebles, $muebleMostrar, $indiceSeleccionado); // llamo a la vista
+inicioCuerpo("TIENDA", $barraUbi);
+cuerpo($muebles, $muebleSeleccionado); // llamo a la vista
 finCuerpo();
 // **********************************************************
 
@@ -46,87 +60,133 @@ finCuerpo();
 function cabecera() {}
 
 //vista
-function cuerpo($muebles, $muebleMostrar, $indiceSeleccionado)
+function cuerpo(array $muebles, ?MuebleBase $muebleSeleccionado)
 {
 ?>
     <br><br>
 
-    <h2>Listado de Muebles</h2>
-    <table border="1" cellpadding="5">
-        <thead>
+    <h2>Muebles almacenados</h2>
+
+    <table border="1">
+
+        <tr>
+            <th>Índice</th>
+            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>País</th>
+            <th>Precio</th>
+        </tr>
+
+        <?php
+
+        foreach ($muebles as $indice => $mueble) {
+
+        ?>
+
             <tr>
-                <th>Índice</th>
-                <th>Tipo</th>
-                <th>Nombre</th>
-                <th>Fabricante</th>
-                <th>País</th>
-                <th>Año</th>
-                <th>Precio</th>
+
+                <td> <?= $indice ?> </td>
+
+                <td> <?= get_class($mueble) ?> </td>
+
+                <td> <?= $mueble->getNombre() ?> </td>
+
+                <td> <?= $mueble->getPais() ?> </td>
+
+                <td> <?= $mueble->getPrecio() ?> </td>
+
             </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($muebles as $indice => $mueble): ?>
-                <tr>
-                    <td><?php echo $indice; ?></td>
-                    <td><?php echo get_class($mueble); ?></td>
-                    <td><?php echo $mueble->getNombre(); ?></td>
-                    <td><?php echo $mueble->getFabricante(); ?></td>
-                    <td><?php echo $mueble->getPais(); ?></td>
-                    <td><?php echo $mueble->getAnio(); ?></td>
-                    <td><?php echo $mueble->getPrecio(); ?> €</td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
+
+        <?php
+
+        }
+
+        ?>
 
     </table>
 
-    <br>
+    <br><br>
 
-    <h2>Operaciones con Muebles</h2>
-    <form method="post" action="">
-        <label for="indice">Seleccione un mueble:</label>
-        <select name="indice" id="indice">
-            <?php foreach ($muebles as $indice => $mueble): ?>
-                <option value="<?php echo $indice; ?>">
-                    <?php echo $indice . " - " . $mueble->getNombre() . " (" . get_class($mueble) . ")"; ?>
+    <form method="post">
+        <label for="idMueble">Seleccione un mueble:</label>
+        <select name="idMueble" id="idMueble">
+
+            <?php
+
+            foreach ($muebles as $indice => $mueble) {
+                
+            ?>
+                <option value="<?= $indice ?>">
+
+                    <?= $indice ?> - <?= $mueble->getNombre() ?>
+
                 </option>
-            <?php endforeach; ?>
+            <?php
+            }
+            ?>
+
         </select>
 
-        <!-- botón que envía el formulario a esta misma página -->
-        <input type="submit" name="btnMostrar" value="Mostrar Mueble">
+        <br><br>
 
-        <!-- botón que envía el formulario a modificar.php en una nueva ventana -->
-        <input type="submit" name="btnModificar" value="Modificar Mueble" formaction="modificar.php" formtarget="_blank">
+        <input type="submit" name="mostrar" value="Mostrar Mueble">
+        <input type="submit" name="modificar" value="Modificar Mueble">
+
     </form>
 
 
-    <!-- Muestra las propiedades si se pulsó "Mostrar Mueble" -->
-    <?php if ($muebleMostrar !== null): ?>
+    <!--Mostrar el mueble seleccionado-->
+
+    <?php
+
+    if ($muebleSeleccionado !== null) {
+
+    ?>
+
         <hr>
-        <h3>Propiedades del Mueble (Índice <?php echo $indiceSeleccionado; ?>)</h3>
-        <p><strong>Tipo:</strong> <?php echo get_class($muebleMostrar); ?></p>
-        <p><strong>Nombre:</strong> <?php echo $muebleMostrar->getNombre(); ?></p>
-        <p><strong>Fabricante:</strong> <?php echo $muebleMostrar->getFabricante(); ?></p>
-        <p><strong>País:</strong> <?php echo $muebleMostrar->getPais(); ?></p>
-        <p><strong>Año:</strong> <?php echo $muebleMostrar->getAnio(); ?></p>
-        <p><strong>Fecha Inicio Venta:</strong> <?php echo $muebleMostrar->getFechaIniVenta(); ?></p>
-        <p><strong>Fecha Fin Venta:</strong> <?php echo $muebleMostrar->getFechaFinVenta(); ?></p>
-        <p><strong>Precio:</strong> <?php echo $muebleMostrar->getPrecio(); ?> €</p>
+        <h2>Mueble seleccionado</h2>
 
-        <!-- propiedades adicionales dinámicas -->
-        <?php foreach ($muebleMostrar->damePropiedadesAdicionales() as $prop): ?>
-            <?php $metodoGet = "get" . ucfirst($prop); ?>
-            <p><strong><?php echo $prop; ?>:</strong> <?php echo $muebleMostrar->$metodoGet(); ?></p>
-        <?php endforeach; ?>
+        <p><strong>Tipo:</strong> <?= get_class($muebleSeleccionado) ?></p>
 
-        <!-- características adicionales -->
-        <p><strong>Características:</strong></p>
-        <ul>
-            <?php foreach ($muebleMostrar->getCaracteristicas() as $clave => $valor): ?>
-                <li><?php echo $clave . ": " . (is_bool($valor) ? ($valor ? "Sí" : "No") : $valor); ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
+        <p><strong>Nombre:</strong><?= $muebleSeleccionado->getNombre() ?></p>
+
+        <p><strong>Fabricante:</strong><?= $muebleSeleccionado->getFabricante() ?></p>
+
+        <p><strong>País:</strong><?= $muebleSeleccionado->getPais() ?></p>
+
+        <p><strong>Año:</strong><?= $muebleSeleccionado->getAnio() ?></p>
+
+        <p><strong>Fecha inicio venta:</strong><?= $muebleSeleccionado->getFechaIniVenta() ?></p>
+
+        <p><strong>Fecha fin venta:</strong><?= $muebleSeleccionado->getFechaFinVenta() ?></p>
+
+        <p><strong>Precio:</strong><?= $muebleSeleccionado->getPrecio() ?></p>
+
+        <h3>Propiedades adicionales</h3>
+
+            <?php
+
+            foreach ($muebleSeleccionado->damePropiedadesAdicionales() as $propiedad) {
+                echo $propiedad . "<br>";
+            }
+
+            ?>
+
+            <h3>Características</h3>
+
+            <?php
+
+            foreach ($muebleSeleccionado->getCaracteristicas() as $nombre => $valor) {
+                echo $nombre ." : " .$valor ."<br>";
+            }
+
+            ?>
+
+        <?php
+
+    }
+
+    ?>
+
 <?php
 }
