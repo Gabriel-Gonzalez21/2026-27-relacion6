@@ -5,7 +5,17 @@ include_once(dirname(__FILE__) . "/datos.php");
 
 //controlador
 
-$id = (int)($_GET["id"] ?? $_POST["id"] ?? 0);
+if (isset($_GET["id"])) {
+    $id = (int)$_GET["id"];
+
+} else if (isset($_POST["id"])) {
+    $id = (int)$_POST["id"];
+
+} else {
+    $id = 0;
+}
+
+
 
 $mueble = null;
 
@@ -84,7 +94,7 @@ function cuerpo( int $id, ?MuebleBase $mueble, array $errores, bool $resumen) {
     }
 
     if ($resumen) {
-?>
+    ?>
 
         <h2>Resumen modificación</h2>
 
@@ -111,9 +121,10 @@ function cuerpo( int $id, ?MuebleBase $mueble, array $errores, bool $resumen) {
 
         <a href="index.php">Volver</a>
 
-<?php
+    <?php
         return;
     }
+    
 ?>
 
     <h2>Modificar mueble</h2>
