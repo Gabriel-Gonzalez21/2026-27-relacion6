@@ -152,6 +152,15 @@ function cuerpo( int $id, ?MuebleBase $mueble, array $errores, bool $resumen) {
         <label>Precio:</label>
         <input type="text" name="precio" value="<?= $mueble->getPrecio() ?>">
 
+        <!--Modificar el material de un mueble-->
+        <label for="">Seleccione un material:</label>
+
+        <select name="" id=""></select>
+
+
+
+
+
         <br><br>
 
         <?php if ($mueble instanceof MuebleReciclado) { ?>

@@ -15,12 +15,17 @@ abstract class MuebleBase{
     private string $_fechaFinVenta = "31/12/2040";
     private float $_precio = 30;
 
+    //Propiedad enumerada Material
+    private Materiales $_material;
 
 
     //--------------------------------CONSTRUCTOR----------------------------------------
     public function __construct(string $nombre, string $fabricante = "FaMu:", string $pais = "ESPAÑA", int $anio = 2020,
-                                string $fechaIniVenta = "01/01/2020",string $fechaFinVenta = "31/12/2040",float $precio = 30){
-
+                                string $fechaIniVenta = "01/01/2020",string 
+                                $fechaFinVenta = "31/12/2040",float $precio = 30){
+        
+        //Se le asigna por defecto 10 que es el valor de hierro
+        $this->_material = Materiales::Hierro;
 
         //inicializar caracteristicas en el constructor
         $this->_caracteristicas = new Caracteristicas();
@@ -65,6 +70,15 @@ abstract class MuebleBase{
 
 
     //-----------------------GETTERS Y SETTERS---------------------------------
+
+    //------------------material
+    public function setMaterial(Materiales $material) : void {
+        $this->_material = $material;
+    }
+
+    public function getMaterial() : Materiales {
+        return $this->_material;
+    }
 
 
     //------------------get caracteristicas
@@ -267,6 +281,17 @@ abstract class MuebleBase{
 
 
     /**
+     * Devuelve una cadena con el valor y el nombre del material
+     *
+     * @return string
+     */
+    public function getMaterialDescripcion(): string {
+        return "Valor ".$this->_material->valor()." de material ". $this->_material->descripcion();
+    }
+
+
+
+    /**
      * Método toString
      *
      * @return string
@@ -274,7 +299,8 @@ abstract class MuebleBase{
     public function __toString(): string{
         return "MUEBLE de clase " .get_class($this) ." con nombre " .$this->_nombre .", fabricante " .
             $this->_fabricante .", fabricado en " .$this->_pais ." a partir del año " .$this->_anio .
-            ", vendido desde " .$this->_fechaIniVenta ." hasta " .$this->_fechaFinVenta .", precio " .$this->_precio;
+            ", vendido desde " .$this->_fechaIniVenta ." hasta " .$this->_fechaFinVenta .", precio " .$this->_precio.
+            ", de material ". $this->_material->descripcion();
     }
 
 

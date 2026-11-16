@@ -6,6 +6,7 @@ class Caracteristicas implements Iterator{
 
     private array $_iterador = [];
 
+    private mixed $_numero_serie;
 
     //permitir propiedades dinamicas: 
 

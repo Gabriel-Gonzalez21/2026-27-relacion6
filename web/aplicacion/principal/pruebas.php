@@ -30,6 +30,19 @@ $muebleReciclado = new MuebleReciclado(
     80
 );
 
+
+$muebleReciclado = new MuebleReciclado(
+    "Mesa",
+    "Ikea",
+    "España",
+    2023,
+    "01/01/2023",
+    "31/12/2030",
+    150,
+    80
+    
+);
+
 $muebleReciclado->anadirCaracteristicas(
     "color",
     "rojo",
@@ -38,6 +51,10 @@ $muebleReciclado->anadirCaracteristicas(
     "pesoVisual",
     20
 );
+
+
+
+
 
 $muebleTradicional = new MuebleTradicional(
     "Armario",
@@ -89,6 +106,7 @@ function cuerpo(MuebleReciclado $muebleReciclado, MuebleTradicional $muebleTradi
 
     <p><?= $muebleReciclado ?></p>
 
+    <p>Descripcion de material:<?= $muebleReciclado->getMaterialDescripcion() ?> </p>
     <hr>
 
     <h3>Mueble tradicional</h3>

@@ -3,7 +3,6 @@
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 include_once(dirname(__FILE__) . "/datos.php");
 
-
 //controlador
 
 //Mostrar mueble seleccionado
@@ -75,6 +74,7 @@ function cuerpo(array $muebles, ?MuebleBase $muebleSeleccionado)
             <th>Nombre</th>
             <th>País</th>
             <th>Precio</th>
+            <th>Material</th>
         </tr>
 
         <?php
@@ -94,6 +94,8 @@ function cuerpo(array $muebles, ?MuebleBase $muebleSeleccionado)
                 <td> <?= $mueble->getPais() ?> </td>
 
                 <td> <?= $mueble->getPrecio() ?> </td>
+
+                <td> <?= $mueble->getMaterialDescripcion() ?> </td>
 
             </tr>
 
@@ -161,6 +163,8 @@ function cuerpo(array $muebles, ?MuebleBase $muebleSeleccionado)
         <p><strong>Fecha fin venta:</strong><?= $muebleSeleccionado->getFechaFinVenta() ?></p>
 
         <p><strong>Precio:</strong><?= $muebleSeleccionado->getPrecio() ?></p>
+
+        <p><strong>Material:</strong><?= $muebleSeleccionado->getMaterialDescripcion() ?></p>
 
         <h3>Propiedades adicionales</h3>
 
