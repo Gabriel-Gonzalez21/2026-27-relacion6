@@ -1,4 +1,9 @@
 <?php
+
+//redirección automática a index.php
+header("Location: aplicacion/principal/index.php");
+
+
 include_once(dirname(__FILE__) . "/cabecera.php");
 //controlador
 
@@ -21,6 +26,6 @@ function cuerpo()
 {
 ?>
     <br><br>
-    <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a><br>
+    <a href="./aplicacion/principal/pruebas.php">Acceso a pruebas</a><br>
 <?php
 }
